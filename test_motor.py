@@ -1,6 +1,7 @@
 import unittest
 from motorinterface.motor import IdealSimulatedMotor
 
+
 class TestMotor(unittest.TestCase):
 
     def test_speed(self):
@@ -27,6 +28,12 @@ class TestMotor(unittest.TestCase):
         motor = IdealSimulatedMotor()
         motor.stop()
         assert motor.enabled == False
+
+    def test_position_after_rolling(self):
+        motor = IdealSimulatedMotor()
+        motor.speed = 1.0
+        motor._previous_time -= 1
+        unittest.TestCase().assertAlmostEqual(motor.position, 1.0)
 
 
 def main():
