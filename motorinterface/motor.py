@@ -1,7 +1,7 @@
 try:
-    from utime import time
+    import utime as time
 except ImportError:
-    from time import time
+    import time as time
 from math import pi
 
 
@@ -45,10 +45,10 @@ class IdealSimulatedMotor(Motor):
         self._speed = 0.0
         self._position = 0.0
         self._on = False
-        self._previous_time = time()
+        self._previous_time = time.time()
 
     def _update_position(self) -> None:
-        current_time = time()
+        current_time = time.time()
         elapsed_time = current_time - self._previous_time
         self._position += (self._speed * elapsed_time) % (2 * pi)
         self._previous_time = current_time
