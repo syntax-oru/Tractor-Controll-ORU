@@ -1,7 +1,6 @@
 import unittest
 from motorinterface.motor import IdealSimulatedMotor
 
-
 class TestMotor(unittest.TestCase):
 
     def test_speed(self):
