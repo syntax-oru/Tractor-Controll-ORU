@@ -28,7 +28,6 @@ class TestMotor(unittest.TestCase):
         motor.stop()
         assert motor.enabled == False
 
-
 def main():
     unittest.main()
 
