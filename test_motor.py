@@ -45,7 +45,6 @@ class TestMotor(unittest.TestCase):
         motor._previous_time -= math.pi * 2 + 1
         almost_equal(motor.position, 1.0)
 
-
 def main():
     unittest.main()
 
