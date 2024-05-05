@@ -1,5 +1,10 @@
 import unittest
 from motorinterface.motor import IdealSimulatedMotor
+import math
+from functools import partial
+
+almost_equal = partial(unittest.TestCase().assertAlmostEqual, places=6)
+
 
 class TestMotor(unittest.TestCase):
 
@@ -27,6 +32,18 @@ class TestMotor(unittest.TestCase):
         motor = IdealSimulatedMotor()
         motor.stop()
         assert motor.enabled == False
+
+    def test_position_after_rolling(self):
+        motor = IdealSimulatedMotor()
+        motor.speed = 1.0
+        motor._previous_time -= 1
+        almost_equal(motor.position, 1.0)
+
+    def test_position_after_rolling_far(self):
+        motor = IdealSimulatedMotor()
+        motor.speed = 1.0
+        motor._previous_time -= math.pi * 2 + 1
+        almost_equal(motor.position, 1.0)
 
 def main():
     unittest.main()

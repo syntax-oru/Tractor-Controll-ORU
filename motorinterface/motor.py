@@ -1,16 +1,28 @@
 try:
-    from utime import time
+    import utime as time
 except ImportError:
-    from time import time
+    import time as time
 from math import pi
 
 
 class Motor:
+    """
+    Interface for a motor object.
+
+    Attributes:
+        speed (float): The speed of the motor in radians per second.
+        position (float): The current position of the motor in radians.
+        enabled (bool): True if the motor is enabled, False otherwise.
+    """
+
     def __init__(self) -> None:
         ...
 
     @property
     def speed(self) -> float:
+        """
+        The speed of the motor in radians per second.
+        """
         ...
 
     @speed.setter
@@ -19,6 +31,9 @@ class Motor:
 
     @property
     def position(self) -> float:
+        """
+        The current position of the motor in radians.
+        """
         ...
 
     @position.setter
@@ -26,13 +41,41 @@ class Motor:
         ...
 
     def start(self) -> None:
+        """
+        Starts the motor.
+
+        Enables motor.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         ...
 
     def stop(self) -> None:
+        """
+        Stops the motor.
+
+        Sets speed to 0 and disables motor.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         ...
 
     @property
     def enabled(self) -> bool:
+        """
+        Check if the motor is enabled.
+
+        Returns:
+            bool: True if the motor is enabled, False otherwise.
+        """
         ...
 
     @enabled.setter
@@ -41,14 +84,19 @@ class Motor:
 
 
 class IdealSimulatedMotor(Motor):
+    """
+    IdealSimulatedMotor is a simulated motor that behaves ideally.\n
+    Without friction and without acceleration.
+    """
+
     def __init__(self) -> None:
-        self._speed = 0.0
-        self._position = 0.0
-        self._on = False
-        self._previous_time = time()
+        self._speed: float = 0.0
+        self._position: float = 0.0
+        self._on: bool = False
+        self._previous_time: float = time.time()
 
     def _update_position(self) -> None:
-        current_time = time()
+        current_time = time.time()
         elapsed_time = current_time - self._previous_time
         self._position += (self._speed * elapsed_time) % (2 * pi)
         self._previous_time = current_time
