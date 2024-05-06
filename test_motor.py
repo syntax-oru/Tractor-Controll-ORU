@@ -1,5 +1,5 @@
 import unittest
-from motorinterface.motor import IdealSimulatedMotor
+from motorinterface_piko.motor import IdealSimulatedMotor
 import math
 from functools import partial
 
