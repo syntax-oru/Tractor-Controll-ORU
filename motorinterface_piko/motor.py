@@ -4,7 +4,6 @@ except ImportError:
     import time as time
 from math import pi
 
-
 class Motor:
     """
     Interface for a motor object.
@@ -81,7 +80,6 @@ class Motor:
     @enabled.setter
     def enabled(self, value: bool) -> None:
         ...
-
 
 class IdealSimulatedMotor(Motor):
     """
