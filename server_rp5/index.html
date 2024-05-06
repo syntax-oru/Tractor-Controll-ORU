@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Page</title>
+</head>
+<body>
+
+<button id="runButton">Run</button>
+<button id="stopButton">Stop</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#runButton").click(function(){
+        $.get("http://localhost:5000/run", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+    $("#stopButton").click(function(){
+        $.get("http://localhost:5000/stop", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+</script>
+
+</body>
+</html>
